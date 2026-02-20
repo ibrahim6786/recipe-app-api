@@ -27,7 +27,11 @@ RUN apk add --no-cache \
         /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi \
     && adduser -D django-user \
-    && rm -rf /tmp
+    && rm -rf /tmp && \
+    mkdir -p /vol/web/media && \
+    mkdir -p /vol/web/static && \
+    chown -R django-user:django-user /vol && \
+    chmod -R 755 /vol
 
 ENV PATH="/py/bin:$PATH"
 USER django-user
